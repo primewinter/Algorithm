@@ -41,8 +41,38 @@ public class P15 {
   
 	    	  }
 	      }
+	      
 	      return answer;
 	}
+	
+	// 다른 사람 풀이
+	public static String caesar(String s, int n) {
+        String result = "";
+	    n = n % 26; //문제에서 n은 25이하의 자연수라고 했으므로 생략 가능
+	    
+	    for (int i = 0; i < s.length(); i++) {
+	      char ch = s.charAt(i);
+	      
+	      if (Character.isLowerCase(ch)) {
+	    	  // char의 Wrapper Class <<Character>> API 확인
+	        ch = (char) ((ch - 'a' + n) % 26 + 'a');
+	        // ch - 'a' : 아스키코드 a 시작 지점을 0으로 설정
+	        // ch-'a' + n : a에서 n만큼 이동 
+	        // (ch-'a'+n) % 26 : z 이후로 넘어갔을 경우 계산
+	        // 암호화가 끝난 알파벳의 위치값 (0<=n<26)
+
+	        // (ch-'a'+n)%26 + 'a' : 아스키코드표 안에서의 위치값
+	        
+	      } else if (Character.isUpperCase(ch)) {
+	        ch = (char) ((ch - 'A' + n) % 26 + 'A');
+	      }
+	      
+	      result += ch;
+	      //공백인 경우 그대로 concat
+	    }
+        
+	    return result;
+    }
 	
 	public static void main(String[] args) {
 		System.out.println(solution(("a B z"), 4));
