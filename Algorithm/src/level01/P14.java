@@ -44,7 +44,6 @@ public class P14 {
 			int[] b = {2,1,2,3,2,4,2,5};
 			int[] c = {3,3,1,1,2,2,4,4,5,5};
 			
-			
 			for(int i=0; i<answers.length; i++) {
 				if(answers[i]==a[i%5]) {
 					result[0]++;
@@ -65,11 +64,25 @@ public class P14 {
 			}
 			
 			Collections.sort(answer);
-			return answer.stream().mapToInt(i->i).toArray();
-			/*answer.stream().mapToInt(i->i).toArray() 설명
-			 * https://stackoverflow.com/questions/960431/how-to-convert-listinteger-to-int-in-java
+			
+			// i) for문 이용한 list -> array : 시간 적게 걸림  
+			int[] array = new int[answer.size()];
+	        for(int i=0; i <answer.size(); i++) {
+				array[i] = answer.get(i);
+	        }
+			return array;	
+			
+			
+			
+			
+			// ii) stream() 이용한 list -> array : 시간 오래 걸림
+			/* return answer.stream().mapToInt(i->i).toArray();
 			 * 
-			 * Thought process:
+			 * 
+			answer.stream().mapToInt(i->i).toArray() 설명
+			https://stackoverflow.com/questions/960431/how-to-convert-listinteger-to-int-in-java
+			
+			Thought process:
 
 			simple Stream#toArray returns Object[], so it is not what we want. Also Stream#toArray(IntFunction<A[]> generator) doesn't do what we want because generic type A can't represent primitive int
 			so it would be nice to have some stream which could handle primitive type int instead of wrapper Integer, because its toArray method will most likely also return int[] array (returning something else like Object[] or even boxed Integer[] would be unnatural here). And fortunately Java 8 has such stream which is IntStream
