@@ -74,6 +74,48 @@ public class P15 {
 	    return result;
     }
 	
+	
+	// 다른 사람 풀이2
+	public static String caesar2(String s, int n) {
+        StringBuilder builder = new StringBuilder();
+        // String은 불변 클래스이므로 StringBuilder로 했을 때 연산이 훨씬 빠르다.
+        // 그 이유에 대한 설명 → https://cjh5414.github.io/why-StringBuffer-and-StringBuilder-are-better-than-String/
+        
+        char[] array =s.toCharArray();
+        // 대문자는 65 ~ 90    90 - 25 +1 = 총 26개
+        // 소문자는 97 ~ 122   122- 97 +1 = 총 26개
+        // 공백은 32
+        int number = 0;
+
+        for(int i=0; i<array.length; i++) {
+            // 대문자의 경우
+            if(array[i]>=65 && array[i] <=90){
+                number = array[i] + n%26;    
+                if(number>90){
+                    number = number - 26;
+                }                
+            }
+
+            // 소문자의 경우
+            if(array[i]>=97 && array[i] <=122){
+                number = array[i] + n%26;
+                if(number>122){
+                    number = number - 26;
+                }
+            }
+
+            // 공백의 경우
+            if(array[i]==32) {
+                number = 32;
+            }
+
+            builder.append( (char)number );
+        }
+
+        return builder.toString();
+}
+
+	
 	public static void main(String[] args) {
 		System.out.println(solution(("a B z"), 4));
 	}
