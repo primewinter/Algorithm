@@ -7,9 +7,8 @@ import java.util.Queue;
 import java.util.Stack;
 
 public class P17 {
-	/*
+	/* 프로그래머스 Lv1. 크레인 인형뽑기 게임
 	 * https://programmers.co.kr/learn/courses/30/lessons/64061
-	 * 프로그래머스 Lv1. 크레인 인형뽑기 게임
 	 * 문제 설명
 	게임개발자인 죠르디는 크레인 인형뽑기 기계를 모바일 게임으로 만들려고 합니다.
 	죠르디는 게임의 재미를 높이기 위해 화면 구성과 규칙을 다음과 같이 게임 로직에 반영하려고 합니다.
