@@ -1,4 +1,4 @@
-package level01;
+package programmers.level01;
 
 public class P15 {
 	/* 프로그래머스 Lv.1 시저암호

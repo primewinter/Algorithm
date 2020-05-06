@@ -1,4 +1,4 @@
-package level01;
+package programmers.level01;
 
 public class P21 {
 	/* 프로그래머스 Lv1. 제일 작은 수 제거하기

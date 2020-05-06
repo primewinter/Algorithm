@@ -1,4 +1,4 @@
-package level01;
+package programmers.level01;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -37,8 +37,10 @@ public class P24 {
             }
         }
         // ----!>
+        char[] chArr = s.toCharArray();
+        return new StringBuilder().append(chArr).reverse().toString();
         
-        return answer;
+        //return answer;
     }
 	
 	// 다른 사람 풀이 : StringBuilder 사용

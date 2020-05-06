@@ -1,4 +1,4 @@
-package level02;
+package programmers.level02;
 
 import java.util.Collections;
 import java.util.LinkedList;
