@@ -69,15 +69,34 @@ public class P27 {
         for (int i = 0; i < n; i++) {
             result[i] = Integer.toBinaryString(arr1[i] | arr2[i]); // 비트 연산자
         }
+        /*  여기서 잠깐!!
+         *  result[i] = Integer.toBinaryString(arr1[i] | arr2[i]);
+         *  9는 1001(2)로, 30은 11110(2)로 자릿수가 달라보이지만
+         *  둘다 int 값이므로 사실, 9는 0000 0000 0000 0000 0000 0000 0000 1001 이고 
+         *  30 은 0000 0000 0000 0000 0000 0000 0001 1110 의 비트값을 가지므로
+         *  자릿수는 동일하다.
+         */
 
         for (int i = 0; i < n; i++) {
-            result[i] = String.format("%" + n + "s", result[i]);
+            result[i] = String.format("%" + n + "s", result[i]); // format 사용법 익히기
             result[i] = result[i].replaceAll("1", "#");
             result[i] = result[i].replaceAll("0", " ");
         }
 
         return result;
     }
+	
+	// 한솔쓰의 답!! 더 깔끔하네!!
+	 public String[] hansol(int n, int[] arr1, int[] arr2) {
+	      String[] answer = new String[n];
+	      
+	      for(int i = 0; i < n; i++){
+		answer[i] = String.format("%" + n + "s", Integer.toBinaryString(arr1[i] | arr2[i]).replace("1", "#").replace("0", " "));
+	      }
+	      
+	      return answer;
+	  }
+
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		System.out.println(solution(5, new int[] {9, 20, 28, 18, 11}, new int[] {30, 1, 21, 17, 28}));
