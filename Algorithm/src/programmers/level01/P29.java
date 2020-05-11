@@ -37,9 +37,10 @@ public class P29 {
 			if(num==1) { 
 				return answer-1;
 			}
-			num = num%2==0?num/2:num*3+1; // 실패 : int의 범위를 넘어갔을 때 2로 나누면 나머지가 0이 된다.(쓰레기값이 도출된다.) 그러므로
+			System.out.print("나머지 : "+num%2+" || ");
+			num = num%2==0?num/2:num*3+1; // 실패 : int의 범위를 넘어갔을 때(혹은 음수일 때) 2로 나누면 나머지가 0이 된다.(쓰레기값이 도출된다.) 그러므로
 			num2 = num2%2==1?num2*3+1:num2/2; // 성공 : n%2==1 로 먼저 필터링을 하는 것이 좋다.
-			if(answer==106) { System.out.println(num%2); }
+			//if(answer==106) { System.out.println(num%2); }
 			System.out.println(num+" || "+num2+" ("+answer+")");
 		}
 		
@@ -47,21 +48,20 @@ public class P29 {
 	}
 	
 	
-	public static int solution2(int num) {
-		int answer = 0;
-		while(answer!=500) {
-			if(num==1) { return answer; }
-			if(num%2==0) {
-				num /= 2;
-				answer++;
-			} else {
-				num = num*3+1;
-				answer++;
-			}
-		}
-		
-		return answer==500?-1:answer;
-	}
+	  public static int solution2(int num) {
+          long collatz = num;
+          for(int answer=1; answer <= 500; answer++) {
+		      if(collatz==1) { 
+		    	  return answer-1;
+		      }
+		      //num = num%2==1?num*3+1:num/2;  → 성공
+		      //num = num%2==0?num/2:num*3+1;  → 실패
+              collatz = collatz%2==0?collatz/2:collatz*3+1;
+		  }
+		  
+         return -1;
+	  }
+
 	
 	// 다른 사람 풀이 : long 타입으로 계산을 하면 된다!!!
 	public int collatz(int num) {
