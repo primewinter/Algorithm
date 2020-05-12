@@ -3,9 +3,13 @@ package programmers.level01;
 import java.util.Arrays;
 
 public class P07 {
-
+	// Level1 : K번째수
+	public int[] solution(int[] array, int[][] commands) {
+		int[] answer = new int[commands.length];
+		
+		return answer;
+	}
 	public static void main(String[] args) {
-		// Level1 : K번째수
 		int[] array = {1,5,2,6,3,7,4};
 		int[][] commands = { {2,5,3}, {4,4,1}, {1,7,3} };
 		
