@@ -181,15 +181,158 @@ public class P25 {
 			this.currentStage = cs;
 		}
 	}
+	
+	
+	
+	// 서영쓰 풀이
+	static class StageS {	// 2)
+		int stageNum;
+		double failureRate;
+		
+		public StageS(int stageNum, double failureRate) {
+			super();
+			this.stageNum = stageNum;
+			this.failureRate = failureRate;
+		}
+	}
+
+    public static int[] other(int N, int[] stages) {
+        int[] answer = new int[N];
+        
+        int[] reached = new int[N];
+        int[] unclear = new int[N];
+        
+        for(int i=0; i<stages.length; i++) {
+        	int playerStage = stages[i]-1;
+        	
+        	if( playerStage < N ) {
+        		unclear[playerStage]++;
+        		reached[playerStage]++;
+        	}
+        	for(int j=0; j<playerStage; j++) {
+        		reached[j]++;
+        	}
+        }
+        
+        Double[] failureRates = new Double[N];
+        StageS[] stageArray = new StageS[N];
+        
+        for(int k=0; k<N; k++) {
+        	
+        	//double failureRate = (double)unclear[k]/reached[k];	//0으로 나누는 경우 컴파일에러는 안뜨지만 NaN가 됨
+        	double failureRate = reached[k] == 0 ? 0 : (double)unclear[k]/reached[k];	//0으로 나누는거 조심!
+        	failureRates[k] = failureRate;
+        	
+        	//No enclosing instance of ~ : static 메소드인 main 안에서 non-static class 를 호출하려고 하니 발생하는 오류
+        	StageS currentStage = new StageS(k+1, failureRate);	
+        	stageArray[k] = currentStage;
+        }
+        
+        //List<Double> failureList = Arrays.asList(failureRates);
+        //Arrays.sort(failureRates, Collections.reverseOrder());
+
+        System.out.println(Arrays.toString(failureRates));
+        
+        //1) class Stage implements Comparable<Stage> 인 경우!
+        //Arrays.sort(stageArray);	
+        
+        ///*
+        //2) sort시 Comparator를 오버라이드 하는 경우!
+        Arrays.sort(stageArray, new Comparator<StageS>() { 
+			@Override
+			public int compare(StageS o1, StageS o2) {
+				
+				if(o1.failureRate == o2.failureRate) {	
+					return o1.stageNum - o2.stageNum;
+				}	//stageNum은 이미 오름차순 정렬이 되어있기 때문에 안해줘도 됨 하지만 확실하게 하기위해 해줌! 
+				
+				//실패율 기준으로 내림차순 정렬하기
+				if(o1.failureRate < o2.failureRate) {
+					return 1;
+				}else if(o1.failureRate > o2.failureRate) {
+					return -1;
+				}
+				return 0;
+			}
+        });
+        //*/
+        
+        for (int i = 0; i < N; i++) {
+            answer[i] = stageArray[i].stageNum;
+        }
+        
+        return answer;
+    }
+    
+    // 감자면 풀이
+    public static int[] other2(int N, int[] stages) {
+        Failure[] failure = new Failure[N];
+        
+        for(int i = 0; i < failure.length; i++) {
+            failure[i] = new Failure(i + 1);
+        }
+        
+        for(int i = 0; i < stages.length; i++) {
+            if( stages[i] != (N + 1) ) {
+                failure[stages[i] - 1].clearUsers++;
+            }
+        }
+        
+        int totalUsers = stages.length; 
+        System.out.println("이해 안되는 부분");
+        for(int i = 0; i < failure.length; i++) {
+            if(failure[i].clearUsers == 0 || totalUsers == 0) {
+                failure[i].failureRate = 0.0; 
+            }
+            else {
+                failure[i].failureRate = (double) failure[i].clearUsers / totalUsers;
+                System.out.println(failure[i].failureRate);
+                totalUsers -= failure[i].clearUsers;
+                System.out.println(totalUsers);
+                System.out.println();
+            }
+        }
+        System.out.println("여기까지");
+        Arrays.sort(failure, new Comparator<Failure>() {
+                        public int compare(Failure f1, Failure f2) {
+                            if(f1.failureRate == f2.failureRate) {
+                                return f1.stage - f2.stage; 
+                            }
+                            
+                            return Double.compare(f2.failureRate, f1.failureRate);
+                        }    
+                    }
+        );
+        
+        int[] answer = new int[failure.length];
+        
+        for(int i = 0; i < failure.length; i++) {
+            answer[i] = failure[i].stage;
+            System.out.print(failure[i].stage + " ");
+        }
+        
+        return answer;
+    }
+    
+    static class Failure {
+        int stage; 
+        int clearUsers;
+        double failureRate; 
+        
+        public Failure(int stage) {
+            this.stage = stage;
+        }
+    }
+
 	 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 
-		System.out.println(solution(4, new int[]{4,4,4,4,4}));
+		//System.out.println(solution(4, new int[]{4,4,4,4,4}));
 		//System.out.println(solution(5, new int[] {2, 1, 2, 6, 2, 4, 3, 3}));
 		
-		System.out.println(solution(5, new int[]{1,2,3,3,4}));
-		System.out.println(solution(2, new int[] {1,1,2,2,3}));
+		//System.out.println(solution(5, new int[]{1,2,3,3,4}));
+		System.out.println(other2(2, new int[] {1,1,2,2,3}));
 	}
 
 }
