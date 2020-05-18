@@ -1,5 +1,6 @@
 package programmers.level02;
 
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.LinkedList;
 
@@ -155,6 +156,43 @@ public class Printer {
         
         return answer;
     }
+	
+	
+	// 감자면쓰 풀이
+	public int other1(int[] priorities, int location) {
+        int answer = 0;
+
+        LinkedList<Integer> queue = new LinkedList<>();
+
+        for(int i = 0; i < priorities.length; i++) {
+            queue.add(priorities[i]);
+        }
+
+        Arrays.sort(priorities); 
+        int length = priorities.length - 1; 
+
+        while(!queue.isEmpty()){
+            int dummy = queue.poll();
+
+            if(dummy == priorities[length - answer]){
+                answer++;
+                location--;
+                if(location < 0){
+                    break;
+                }
+            }
+            else {
+                queue.add(dummy);
+                location--;
+                if(location < 0){
+                    location = queue.size() - 1;
+                }
+            }
+        }
+        
+        return answer;
+    }
+
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub

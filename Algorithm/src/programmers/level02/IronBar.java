@@ -41,7 +41,7 @@ public class IronBar {
 		char[] chArr = arrangement.toCharArray();
 		int depth = 0;
 		for(int i=0; i<chArr.length-1;i++) {
-			if(chArr[i]=='(' && chArr[i+1]==')') {
+			if(chArr[i]=='(' && chArr[i+1]=='(') {
 				depth++;
 			} else if(chArr[i]==')' && chArr[i+1]==')') {
 				depth--;
@@ -76,7 +76,7 @@ public class IronBar {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		solution("()(((()())(())()))(())");
+		System.out.println(solution("()(((()())(())()))(())"));
 
 	}
 
