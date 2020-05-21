@@ -5,7 +5,7 @@ import java.util.Comparator;
 
 public class TheBiggestNumber {
 	
-	/* 가장 큰 수
+	/* 가장 큰 수(+9) --> 다른 사람 풀이 듣고 푼 거임
 	 * https://programmers.co.kr/learn/courses/30/lessons/42746
 	 * 문제 설명
 	0 또는 양의 정수가 주어졌을 때, 정수를 이어 붙여 만들 수 있는 가장 큰 수를 알아내 주세요.
@@ -24,6 +24,7 @@ public class TheBiggestNumber {
 	[3, 30, 34, 5, 9]	9534330
 	 */
 
+	// 문제 풀이 흔적
 	public static String biggest(int[] numbers) {
         String answer = "";
         
@@ -62,7 +63,7 @@ public class TheBiggestNumber {
 			public int compare(String o1, String o2) {
 				long long1 = Long.parseLong(o1+o2);
 				long long2 = Long.parseLong(o2+o1);
-				return (int)(long1-long2);
+				return (int)(long2-long1); // ******long1-long2 라고 해서 틀렸었다
 				
 				/*
 				char[] ch1 = o1.toCharArray();
@@ -116,10 +117,68 @@ public class TheBiggestNumber {
         for(String str : boxedArray) {
         	answer += str;
         }
+        
+        if(answer.startsWith("0")) {
+        	answer = "0";
+        }
         	
         
         return answer;
     }
+	
+	
+	// 리팩토링한 답안
+	public static String solution2(int[] numbers) {
+		String answer = "";
+        String[] boxedArray = new String[numbers.length];
+        for(int i=0; i<numbers.length;i++) {
+            boxedArray[i] = numbers[i]+"";
+        }
+
+        Arrays.sort(boxedArray, new Comparator<String>() {
+
+            @Override
+            public int compare(String o1, String o2) {
+                long long1 = Long.parseLong(o1+o2);
+                long long2 = Long.parseLong(o2+o1);
+                return (int)(long2-long1);
+            }
+        });
+        for(String str : boxedArray) {
+            answer += str;
+        }
+
+        if(answer.startsWith("0")) {
+            answer = "0";
+        }
+
+
+        return answer;
+	}
+	
+	// 감자면 풀이
+	public String other(int[] numbers) {
+        String[] change = new String[numbers.length];
+        
+        for(int i = 0; i < numbers.length; i++) {
+            change[i] = Integer.toString(numbers[i]);                       
+        }
+
+        Arrays.sort(change, new Comparator<String>() {
+            public int compare(String s1, String s2) {
+                return (s2 + s1).compareTo(s1 + s2);
+            } 
+        });
+        
+        StringBuilder answer = new StringBuilder();
+        
+        for(String s : change) {
+            answer.append(s);
+        }
+        
+        return answer.toString().startsWith("0") ? "0" : answer.toString();
+    }
+
 	
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
