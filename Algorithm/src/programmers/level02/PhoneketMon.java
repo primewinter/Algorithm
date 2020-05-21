@@ -1,6 +1,8 @@
 package programmers.level02;
 
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Set;
 
 public class PhoneketMon {
 	/* 폰켓몬 (+3)
@@ -41,22 +43,52 @@ nums	result
 가장 많은 종류의 폰켓몬을 고르기 위해서는 3번 폰켓몬 한 마리와 2번 폰켓몬 두 마리를 고르거나, 혹은 3번 폰켓몬 두 마리와 3번 폰켓몬 한 마리를 고르면 됩니다. 따라서 최대 고를 수 있는 폰켓몬 종류의 수는 2입니다.
 	 */
 
-	public int solution(int[] nums) {
-        ArrayList<Integer> mons = new ArrayList<>();
+	public static int solution(int[] nums) {
+        // ArrayList의 contains() 이용 : 비교적 오래 걸린다
+		ArrayList<Integer> mons = new ArrayList<>();
+        
         for(int i=0; i<nums.length;i++) {
         	if(mons.size()>=nums.length/2) {
         		break;
         	}
-        	if( !mons.contains(nums[i]) ) {
+        	if( !mons.contains(nums[i])) {
         		mons.add(nums[i]);
         	}
         }
-        return mons.size();
+        
+        // HashSet 이용 : 비교적 짧게 걸린다
+        Set<Integer> set = new HashSet<>();
+        for(int num : nums) {
+        	if(set.size()>=nums.length/2) {
+        		break;
+        	}
+        	set.add(num);
+        }
+        
+        return set.size();
     }
+	
+	
+	// 특정 케이스는 for문을 덜 돌아서 if문을 for문 안에 넣었을 때가 짧게 걸리지만, 대체적으로 아래 방법이 짧게 걸린다.
+	public int other(int[] nums) {
+
+        HashSet<Integer> hs = new HashSet<>();
+
+        for(int i =0; i<nums.length;i++) {
+            hs.add(nums[i]);
+        }
+        
+        // if문을 for문 밖으로 빼서 유효성 체크한다.
+        if(hs.size()>nums.length/2)
+            return nums.length/2;
+
+        return hs.size();
+}
 	
 	
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
+		solution(new int[] {3, 3, 3, 2, 2, 2});
 
 	}
 
