@@ -72,18 +72,18 @@ nums	result
 	// 특정 케이스는 for문을 덜 돌아서 if문을 for문 안에 넣었을 때가 짧게 걸리지만, 대체적으로 아래 방법이 짧게 걸린다.
 	public int other(int[] nums) {
 
-        HashSet<Integer> hs = new HashSet<>();
+    HashSet<Integer> hs = new HashSet<>();
 
-        for(int i =0; i<nums.length;i++) {
-            hs.add(nums[i]);
-        }
-        
-        // if문을 for문 밖으로 빼서 유효성 체크한다.
-        if(hs.size()>nums.length/2)
-            return nums.length/2;
+    for(int i =0; i<nums.length;i++) {
+        hs.add(nums[i]);
+    }
+    
+    // if문을 for문 밖으로 빼서 유효성 체크한다.
+    if(hs.size()>nums.length/2)
+        return nums.length/2;
 
-        return hs.size();
-}
+    return hs.size();
+	}
 	
 	
 	public static void main(String[] args) {

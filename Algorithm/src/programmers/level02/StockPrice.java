@@ -1,6 +1,7 @@
 package programmers.level02;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 
 public class StockPrice {
 	/* 주식가격 +7
@@ -54,6 +55,39 @@ public class StockPrice {
         
         return answer;
     }
+	
+	// 감자면 풀이
+	public int[] other(int[] prices) {
+        LinkedList<Integer> queue = new LinkedList<Integer>();
+        ArrayList<Integer> arrayList = new ArrayList<Integer>();
+        
+        for(int i = 0; i < prices.length; i++) {
+            queue.add(prices[i]);
+        }
+        
+        int index = 1;
+        
+        while(!queue.isEmpty()) {
+            int dummy = queue.poll();
+            int count = 0;
+            
+            for(int i = index; i < prices.length; i++) {
+                if(dummy <= prices[i]) {
+                    count++;
+                }
+                else {
+                    count++;
+                    break;
+                }
+            }
+            
+            arrayList.add(count);
+            index++;
+        }
+
+        return arrayList.stream().mapToInt(i -> i).toArray();
+    }
+
 	
 	
 

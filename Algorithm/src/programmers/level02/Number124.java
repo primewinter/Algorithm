@@ -1,6 +1,6 @@
 package programmers.level02;
 
-public class Number123 {
+public class Number124 {
 	/* 124 나라의 숫자 (+6)
 	 * https://programmers.co.kr/learn/courses/30/lessons/12899
 	 * 문제 설명
@@ -42,6 +42,18 @@ n	result
 
         return answer.toString().replaceAll("[0]", "4");
     }
+	
+	// 다른 사람 풀이
+	public String other(int n) {
+	      String[] num = {"4","1","2"};
+	      String answer = "";
+
+	      while(n > 0){
+	          answer = num[n % 3] + answer;
+	          n = (n - 1) / 3;
+	      }
+	      return answer;
+	  }
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
