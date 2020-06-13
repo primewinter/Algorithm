@@ -44,6 +44,49 @@ A에서 첫번째 숫자인 1, B에서 두번째 숫자인 4를 뽑아 곱하여 더합니다. (누적된 값 
         return answer;
     }
 	
+	// 다른 사람 풀이 (Arrays.sort 직접 구현)
+	public int getMinSum(int []A, int []B) {
+		int answer = 0;
+		int length = A.length;
+		
+		quickSort(A, 0, A.length-1);
+		quickSort(B, 0, B.length-1);
+		
+		//System.out.println(A[0]);
+		//System.out.println(B[0]);
+		
+		for(int i = 0 ; i < length ; i++) {
+		    answer += A[i] * B[length-1-i];
+		}
+		
+		return answer;
+	 }
+
+	 public static void quickSort(int[] arr, int left, int right) {
+		int i, j, pivot, tmp;
+		if (left < right) {
+		    i = left; // 왼쪽의 위치 0
+		    j = right; // 오른쪽의 위치 5
+		    pivot = arr[left]; // 왼쪽값(기준값) 33
+		    
+		    //분할 과정
+			while (i < j) { 
+			    while (arr[j] > pivot) j--; // 기준값의 오른쪽에 있는 값들 중 작은 값(의 위치)을 찾는 코드
+			    while (i < j && arr[i] <= pivot) i++; // 기준값이 찾아낸값(작은값)보다 왼쪽에 있으면 기준값을 그 다음으로 옮긴다
+			    // 기준값이랑 작은 값의 위치를 바꾼다.
+			    tmp = arr[i]; 
+			    arr[i] = arr[j]; 
+			    arr[j] = tmp;
+			}
+			// 새로 찾은 작은 값이 pivot(기준값)이 되고 그 값의 위치가 left가 된다.
+			arr[left] = arr[i];
+			arr[i] = pivot;
+			//정렬 과정
+		    quickSort(arr, left, i - 1);
+		    quickSort(arr, i + 1, right);
+		}
+	}
+	
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 
