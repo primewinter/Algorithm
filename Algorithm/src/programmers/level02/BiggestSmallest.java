@@ -27,6 +27,19 @@ public class BiggestSmallest {
         
         return intArr[0]+" "+intArr[arr.length-1];
     }
+	
+	public String other(String str) {
+        String[] tmp = str.split(" ");
+        int min, max, n;
+        min = max = Integer.parseInt(tmp[0]);
+        for (int i = 1; i < tmp.length; i++) {
+            n = Integer.parseInt(tmp[i]);
+            if(min > n) min = n;
+            if(max < n) max = n;
+        }
+        return min + " " + max;
+
+    }
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		System.out.println(solution("1 2 3 4"));
