@@ -1,4 +1,4 @@
-package baekjoon.DNCq2036;
+package baekjoon.DNC.q2036;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
