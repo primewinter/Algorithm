@@ -22,7 +22,7 @@ public class Q10989 {
 		for(int i = 0 ; i < n ; i++) {
 			arr[i] = Integer.parseInt(br.readLine());
 		}
-		
+
 		quickSort(arr, 0, n-1);
 		
 		for(int el : arr) {
