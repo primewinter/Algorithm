@@ -1,4 +1,4 @@
-package baekjoon.backtracking.q15649;
+package baekjoon.backtracking.NM1;
 
 import java.io.BufferedWriter;
 import java.io.IOException;

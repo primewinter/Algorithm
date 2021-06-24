@@ -1,4 +1,4 @@
-package baekjoon.backtracking.q15651;
+package baekjoon.backtracking.NM3;
 
 import java.io.IOException;
 import java.util.Scanner;

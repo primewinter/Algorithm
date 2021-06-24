@@ -1,8 +1,13 @@
-package baekjoon.backtracking.q9663;
+package baekjoon.backtracking.NQueen;
 
 import java.io.IOException;
 import java.util.Scanner;
 
+/**
+ * TITLE: BOJ N-Queen
+ * 
+ * URL: https://www.acmicpc.net/problem/9663
+ */
 public class Q9663 {
 
     static int N;

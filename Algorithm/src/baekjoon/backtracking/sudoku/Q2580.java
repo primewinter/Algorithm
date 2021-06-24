@@ -1,4 +1,4 @@
-package baekjoon.backtracking.q2580;
+package baekjoon.backtracking.sudoku;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;

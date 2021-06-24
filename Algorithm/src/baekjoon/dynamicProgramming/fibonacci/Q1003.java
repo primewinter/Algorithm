@@ -1,4 +1,4 @@
-package baekjoon.dynamicProgramming.q1003;
+package baekjoon.dynamicProgramming.fibonacci;
 
 import java.io.IOException;
 import java.util.Scanner;

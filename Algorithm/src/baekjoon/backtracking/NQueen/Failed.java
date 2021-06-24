@@ -1,4 +1,4 @@
-package baekjoon.backtracking.q9663;
+package baekjoon.backtracking.NQueen;
 
 import java.io.IOException;
 import java.util.Scanner;
@@ -58,14 +58,13 @@ public class Failed {
                 if (i == row)
                     board[i][j] = toBe;
                 if (j == col)
-                    board[i][j] = toBe;
-                /**
-                 * 오답 이유1
-                 * 
-                 * 2차원배열로 하려고 했는데 row와 col을 중심으로 대각선을 뽑아내는 로직을 구현하지 못했다.
-                 * 
-                 * 다른 답을 찾아보니 어차피 한 행에 하나만 넣을 수 있으므로 열만 고려하면 되었다.
-                 **/
+                    board[i][j] = toBe;/**
+                                        * 오답 이유1
+                                        * 
+                                        * 2차원배열로 하려고 했는데 row와 col을 중심으로 대각선을 뽑아내는 로직을 구현하지 못했다.
+                                        * 
+                                        * 다른 답을 찾아보니 어차피 한 행에 하나만 넣을 수 있으므로 열만 고려하면 되었다.
+                                        **/
             }
         }
     }
