@@ -16,7 +16,7 @@ import java.util.Scanner;
  * 
  * INPUT: (3 2)
  * 
- * OUTPUT: (1 2), (1 3), (2 3)
+ * OUTPUT: (1 2), (1 3), (2 1), (2, 3), (3, 1), (3, 2)
  */
 class Q15649 {
 
